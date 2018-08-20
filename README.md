@@ -1,6 +1,9 @@
 # Autoscaled Web Service Deployment
 
-We want you to automate the deployment of a dashboard to AWS which shows the availability of different hardware profiles. We would also like for you to figure out how to autoscale this application based on the number of incoming requests.
+We want you to automate the deployment of a dashboard to AWS, Azure, or GCP which shows the availability of different hardware profiles. We would also like for you to:
+
+1. Figure out how to autoscale this application based on the number of incoming requests.
+1. Propose a workaround to the performance issue.
 
 There are two different Flask applications that need to be deployed:
 
@@ -31,7 +34,9 @@ Create a new repo with your Github account and send us the link. Please use a di
 
 Your submission should include:
 1. Updated application source files
-1. Scripts to deploy the two autoscaled web applications to AWS. Remember that `portal.py` should be publically accessible and `hardware.py` should be a private internal service.
-1. Include a README.md file with details on how to run everything. In your writeup, you should discuss things to consider if this was a true production deployment. For example, how would a developer deploy new versions of these applications?
+1. Scripts to deploy the two autoscaled web applications to AWS/Azure/GCP. Remember that `portal.py` should be publically accessible and `hardware.py` should be a private internal service.
+1. Include a README.md file with details on how to run everything. In your writeup, you should discuss:
+  * Things to consider if this was a true production deployment. For example, how would a developer deploy new versions of these applications?
+  * Suggestions for dealing with the dashboard performance issue.
 
 The requirements are intentionally vague so feel free to ask questions along the way. There is no deadline for this but we do ask that you keep track of the amount of time you spend working on this.
