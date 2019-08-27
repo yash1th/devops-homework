@@ -5,7 +5,7 @@ We want you to automate the deployment of a dashboard to AWS, Azure, or GCP whic
 There are two different Flask applications that need to be deployed:
 
 * `portal.py` is a public facing app that renders out the dashboard.
-* `hardware.py` is an internal service that calculates the availability of the different hardware profiles available on the platform. This service must not be available to the public internet.
+* `hardware.py` is an internal service that calculates the availability of the different hardware profiles available on the platform. This service must not be available to the public internet. This service must be running on a private subnet that is sitting behind a NAT gateway.
 
 
 ## Running Locally
@@ -26,8 +26,11 @@ Once the two Flask applications are running, visiting http://localhost:5000 will
 
 1. Create a new repo with your Github account and send us the link. *Please use a different repo name and do not fork this one.*
 1. Modify the provided Flask applications to use a RDBMS like MySQL or PostgreSQL instead of sqlite. Using a managed service like RDS for this is encouraged. This database should not be accessible from the public internet.
-1. The creation of the virtual networks used to host the public `portal` UI and the private `hardware` service should be scripted.
-1. You should also include a script to deploy new builds of the `portal` and `hardware` applications. Feel free to use VMs, containers, or serverless for this.
+1. The creation of the virtual network used to host the public `portal` UI and the private `hardware` service should be scripted. We've included a cloudformation script that you are welcome to use as a starting point if you want to do this on AWS. The `environment.yml` script will:
+    * Setup a VPC with public and private subnets
+    * Create a RDS postgres database (`hardwareavailability`) that is not publically accessible.
+    * Optionally create a jumpbox that you can use to access resources in the private subnets. The name of the EC2 keypair should be given as a script parameter if you want to provision a jumpbox. The username will be `ec2-user`.
+1. You should also include a script to deploy new builds of the `portal` and `hardware` applications. Feel free to use VMs, containers, or serverless for this. Setting up a build server is not necessary. Running scripts from your local machine is fine.
 1. Please include a README.md file with details on how to run everything and how new versions of the services should be deployed.
 
 The requirements are intentionally vague so feel free to ask questions along the way. Please keep track of the amount of time you spend working on this.
